@@ -5,8 +5,8 @@ This is a linkedin clone built with next.js and tailwind.css.
 
 # Getting Started on local
 
-- First, run the development server: `npm i` and `npm run dev`.
-- Create a `.env.local` file to store the information below:
+First, run the development server: `npm i` and `npm run dev`.
+Create a `.env.local` file to store the information below:
 - GOOGLE_CLIENT_ID=89XXXXXXXX-XXXXXXXXXXX18cdkujhs38h23g7upttse.apps.googleusercontent.com
 - GOOGLE_CLIENT_SECRET=XXXXXXXXXXXX
 - JWT_SECRET=e798af9a9df1035c07458aeb1c99ccad
@@ -23,4 +23,4 @@ This is a linkedin clone built with next.js and tailwind.css.
 - The app was styled with [tailwind.css](https://tailwindcss.com/docs/installation)
 
 # Deployment
-Deployment would be either with Heroku or AWS cloud service. (Still in Development).
+Deployment would either be with Heroku or AWS cloud service. (Still in Development).

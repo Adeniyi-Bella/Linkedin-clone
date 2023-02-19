@@ -1,4 +1,6 @@
-import Head from 'next/head'
+import { signOut } from "next-auth/react";
+import Head from "next/head";
+import Header from "../components/Header";
 
 export default function Home() {
   return (
@@ -9,8 +11,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
-      Linkedin clone
+      <Header />
+      {/* <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-auto rounded">
+        Button
+      </button> */}
+      {/* <h1>Linkedin clone</h1> */}
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-40px rounded" onClick={signOut}>Sign Out</button>
     </>
-  )
+  );
 }

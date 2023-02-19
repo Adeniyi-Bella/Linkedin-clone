@@ -12,6 +12,7 @@ export async function middleware(req) {
     });
     // You could also check for any property on the session object,
     // like role === "admin" or name === "John Doe", etc.
+    // if user has not logged in return to home
     if (!session) {
       const url = req.nextUrl.clone();
       url.pathname = "/home";

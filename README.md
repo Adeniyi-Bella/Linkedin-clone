@@ -3,6 +3,8 @@
 
 This is a linkedin clone built with next.js and tailwind.css. 
 
+Live App: [here](https://linkedin-clone-jade.vercel.app/)
+
 # Getting Started on local
 
 First, run the development server: `npm i` and `npm run dev`.

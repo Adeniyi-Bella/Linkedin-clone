@@ -12,11 +12,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      {/* <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-auto rounded">
-        Button
-      </button> */}
-      {/* <h1>Linkedin clone</h1> */}
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-40px rounded" onClick={signOut}>Sign Out</button>
+      <div className="py-10 px-[100px]">
+        <h1 className="py-5">HOME PAGE (APP STILL IN DEVELOPMENT)</h1>
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-40px rounded"
+          onClick={signOut}
+        >
+          Sign Out
+        </button>
+      </div>
     </>
   );
 }

@@ -14,7 +14,9 @@ import TimeAgo from "timeago-react";
 import { useSession } from "next-auth/react";
 
 function Post({ post, modalPost }) {
+  console.log(17);
   const { data: session } = useSession();
+  console.log(data);
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [modalType, setModalType] = useRecoilState(modalTypeState);
   const [postState, setPostState] = useRecoilState(getPostState);

@@ -1,14 +1,22 @@
 import { signOut } from "next-auth/react";
+import { AnimatePresence } from "framer-motion";
 import { getSession, useSession } from "next-auth/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
-import { connectToDatabase } from "../util/mongodb";
+import { useRecoilState } from "recoil";
+import { modalState, modalTypeState } from "../atoms/modalAtom";
 import Feed from "../components/Feed";
+import Header from "../components/Header";
+import Modal from "../components/Modal";
+import Sidebar from "../components/Sidebar";
+// import Widgets from "../components/Widgets";
+import { connectToDatabase } from "../util/mongodb";
+
 
 
 export default function Home({posts}) {
+  const [modalOpen, setModalOpen] = useRecoilState(modalState);
+  const [modalType, setModalType] = useRecoilState(modalTypeState);
   //happening on the client side
   const router = useRouter();
   const { status } = useSession({
@@ -34,12 +42,12 @@ export default function Home({posts}) {
           <Feed />
           {/* <Feed posts={posts} /> */}
         </div>
-        {/* <Widgets articles={articles} />
+        {/* <Widgets articles={articles} /> */}
         <AnimatePresence>
           {modalOpen && (
             <Modal handleClose={() => setModalOpen(false)} type={modalType} />
           )}
-        </AnimatePresence> */}
+        </AnimatePresence>
       </main>
       <div className="py-10 px-[100px]">
         <h1 className="py-5">HOME PAGE (APP STILL IN DEVELOPMENT)</h1>

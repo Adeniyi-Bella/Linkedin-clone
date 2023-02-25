@@ -12,7 +12,7 @@ function Input() {
   const { data: session } = useSession();
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [modalType, setModalType] = useRecoilState(modalTypeState);
-
+  
   return (
     <div className="bg-white dark:bg-[#1D2226] rounded-lg p-3 space-y-3 border border-gray-300 dark:border-none">
       <div className="flex items-center space-x-2">
@@ -26,6 +26,7 @@ function Input() {
           className="rounded-full border border-gray-400 py-2.5 px-3 opacity-80 hover:opacity-100 font-medium w-full text-left"
           onClick={() => {
             setModalOpen(true);
+            console.log(modalOpen);
             setModalType("dropIn");
           }}
         >

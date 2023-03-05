@@ -10,7 +10,7 @@ import Header from "../components/Header";
 import Modal from "../components/Modal";
 import Sidebar from "../components/Sidebar";
 // import Widgets from "../components/Widgets";
-import { connectToDatabase } from "../util/mongodb";
+import { connectToDatabase } from "../lib/mongodb";
 
 
 
@@ -39,7 +39,7 @@ export default function Home({posts}) {
       <main className="flex justify-center gap-x-5 px-4 sm:px-12">
         <div className="flex flex-col md:flex-row gap-5">
           <Sidebar />
-          <Feed />
+          <Feed posts={posts} />
           {/* <Feed posts={posts} /> */}
         </div>
         {/* <Widgets articles={articles} /> */}
@@ -62,6 +62,7 @@ export default function Home({posts}) {
   );
 }
 
+//server side rendering when the user is authenticated
 export async function getServerSideProps(context) {
   // Check if the user is authenticated on the server...
   const session = await getSession(context);
@@ -76,14 +77,11 @@ export async function getServerSideProps(context) {
   }
 
   // Get posts on SSR
-  // const { db } = await connectToDatabase();
-  // const posts = await db
-  //   .collection("posts")
-  //   .find()
-  //   .sort({ timestamp: -1 })
-  //   .toArray();
+  const { db } = await connectToDatabase();
+  const posts = await db
+    .collection("posts").find().sort({ timestamp: -1 }).toArray();
 
-  // // Get Google News API
+  // Get Google News API
   // const results = await fetch(
   //   `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEWS_API_KEY}`
   // ).then((res) => res.json());
@@ -92,15 +90,17 @@ export async function getServerSideProps(context) {
     props: {
       session,
   //     articles: results.articles,
-  //     posts: posts.map((post) => ({
-  //       _id: post._id.toString(),
-  //       input: post.input,
-  //       photoUrl: post.photoUrl,
-  //       username: post.username,
-  //       email: post.email,
-  //       userImg: post.userImg,
-  //       createdAt: post.createdAt,
-  //     })),
+  //done to convert the _id in db to string
+      posts: posts.map((post) => ({
+        //convert the _id in db to string
+        _id: post._id.toString(),
+        input: post.input,
+        photoUrl: post.photoUrl,
+        username: post.username,
+        email: post.email,
+        userImg: post.userImg,
+        createdAt: post.createdAt,
+      })),
     },
   };
 }

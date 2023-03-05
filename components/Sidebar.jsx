@@ -12,7 +12,7 @@ function Sidebar() {
       {/* Top */}
       <div className="bg-white dark:bg-[#1D2226] rounded-lg overflow-hidden relative flex flex-col items-center text-center border border-gray-300 dark:border-none">
         <div className="relative w-full h-14">
-          <Image src="https://rb.gy/i26zak" layout="fill" priority />
+          <Image src="https://rb.gy/i26zak" layout="fill" priority alt="" />
         </div>
         <Avatar
           onClick={signOut}

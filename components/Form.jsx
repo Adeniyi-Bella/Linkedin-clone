@@ -7,13 +7,15 @@ import { handlePostState } from "../atoms/postAtom";
 function Form() {
   const [input, setInput] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
+  //session is a global variable that we can use to get the user's information. Already provided by next-auth in the useSession hook
   const { data: session } = useSession();
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [handlePost, setHandlePost] = useRecoilState(handlePostState);
 
   const uploadPost = async (e) => {
+    // Prevent page refresh
     e.preventDefault();
-
+    // connect to server side and post data to the DB
     const response = await fetch("/api/posts", {
       method: "POST",
       body: JSON.stringify({
@@ -33,6 +35,7 @@ function Form() {
     console.log(responseData);
 
     setHandlePost(true);
+    // Close the modal
     setModalOpen(false);
   };
 

@@ -9,12 +9,12 @@ import Feed from "../components/Feed";
 import Header from "../components/Header";
 import Modal from "../components/Modal";
 import Sidebar from "../components/Sidebar";
-// import Widgets from "../components/Widgets";
+import Widgets from "../components/Widgets";
 import { connectToDatabase } from "../lib/mongodb";
 
 
 
-export default function Home({posts}) {
+export default function Home({posts, articles}) {
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
   const [modalType, setModalType] = useRecoilState(modalTypeState);
   //happening on the client side
@@ -42,7 +42,7 @@ export default function Home({posts}) {
           <Feed posts={posts} />
           {/* <Feed posts={posts} /> */}
         </div>
-        {/* <Widgets articles={articles} /> */}
+        <Widgets articles={articles} />
         <AnimatePresence>
           {modalOpen && (
             <Modal handleClose={() => setModalOpen(false)} type={modalType} />
@@ -82,14 +82,14 @@ export async function getServerSideProps(context) {
     .collection("posts").find().sort({ timestamp: -1 }).toArray();
 
   // Get Google News API
-  // const results = await fetch(
-  //   `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEWS_API_KEY}`
-  // ).then((res) => res.json());
+  const results = await fetch(
+    `https://newsapi.org/v2/top-headlines?country=de&apiKey=${process.env.NEWS_API_KEY}`
+  ).then((res) => res.json());
 
   return {
     props: {
       session,
-  //     articles: results.articles,
+      articles: results.articles,
   //done to convert the _id in db to string
       posts: posts.map((post) => ({
         //convert the _id in db to string
